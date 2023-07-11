@@ -146,3 +146,181 @@ nombres.forEach((element, index) => {
   console.log(element)
   console.log(index)
 })
+
+/* FUNCIONES QUE DEVUELVEN OTRAS FUNCIONES COMO SALIDA */
+function saludando2() {
+  return function () {
+    console.log('Im the best');
+  }
+}
+
+
+/* forma 1 */
+/* saludando2()() */
+
+/* forma2 */
+const resultado2 = saludando2()
+resultado2()
+
+
+/* scope */
+/* local scope */
+
+
+/* global scope */
+var variableVar = 1
+let variableLet = 5
+
+{
+  /* global scope, var siempre son variables globales */
+  var variableVar = 2
+  /* block scope, solamente son visibles en ese bloque */
+  let variableLet = 3
+
+  console.log(variableVar);
+  console.log(variableLet);
+}
+
+console.log(variableVar)
+console.log(variableLet)
+
+function foo() {
+  /* local scope */
+  var variableVar = 1000
+  console.log (variableVar)
+}
+
+/* closure 
+suelen ser preguntados
+funcion que retorna otra funcion y aparte la variable externa en donde fue creada
+*/
+
+/* abmito lexico 
+es como se le indica a js donde declaramos nuestras variables
+*/
+
+//ambito global
+function crearContador () {
+  //orden superior
+    let contador = 0
+  //la variable externa funciona mas que una local
+  return function () {
+    
+    return contador++
+  }
+}
+
+const contador = crearContador()
+
+console.log (contador())
+console.log (contador())
+console.log (contador())
+console.log (contador())
+console.log (contador())
+console.log (contador())
+console.log (contador())
+console.log (contador())
+
+
+
+//sistema de crud
+//factory functions
+//create, read, update, delete oop
+//cuando se trabaja con oop no user arrowd funcionts
+
+function makeCrud () {
+  //private variable
+  let users = []
+  
+  //metodos privados
+  return {
+    read(cb) {
+      cb(users)
+    },
+    create(user) {
+      users.push(user)
+    }
+  }
+}
+
+const crudGen28 = makeCrud()
+
+//asi accedemos a una variable privada
+crudGen28.read((users) => {
+  console.log(users);
+})
+
+crudGen28.create({
+  name: 'carlos',
+  age: 31
+})
+
+crudGen28.read((users) => {
+  console.log(users);
+})
+
+/* REST parameter */
+/* encapsula los mete en un cajita */
+/* a, b, c estan dentro de una cajita */
+
+function numbers(a, b, c, ...rest) {
+ 
+  console.log(a);
+  console.log(b);
+  console.log(c);
+ 
+  console.log(rest)
+}
+
+numbers(1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+/* spread operator */
+/* es como si tuvieramos una cajita y los sacaramos */
+const numss = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+function funSpread(a,b,c,d,e,f,g) {
+  console.log(a);
+  console.log(b);
+  console.log(c);
+  console.log(d);
+  console.log(e);
+  console.log(f);
+}
+
+funSpread(...numss)
+/* para max y min solo aceopata secuencia de numeros */
+/* por eso usamos el spread operator */
+console.log(Math.max(... numss));
+console.log(Math.min(...numss))
+
+
+/* hacer una copia */
+const colores = ['rojo', 'axul', 'verde']
+/* const copy = colores.splice('')
+console.log(copy) */
+
+
+const copy2 = [...colores]
+copy2.push('moradp','ginda','purpra')
+console.log(copy2)
+
+
+/* fuciones recursivas */
+/* SE LLAMAN A ELLAS MISMAS */
+/* pueden generaar un blucle infinito */
+
+//1. pensamiento iterativo
+
+const letras = ['a', 'b', 'c', 'd']
+
+for (let i = 0; i < letras.length; i++) {
+  console.log(letras[i]);
+}
+
+//2. pensamiento recursivo
+
+function recorrerLetras () {
+  
+}
+
+console.log(recorrerLetras(letras));
