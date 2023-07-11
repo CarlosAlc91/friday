@@ -315,12 +315,17 @@ const letras = ['a', 'b', 'c', 'd']
 
 for (let i = 0; i < letras.length; i++) {
   console.log(letras[i]);
+  
 }
 
 //2. pensamiento recursivo
 
-function recorrerLetras () {
-  
+function recorrerLetras(arr, i = 0) {
+  if (i < letras.length) {
+    console.log(letras[i]);
+    recorrerLetras(arr, i + 1)
+  }
+
 }
 
-console.log(recorrerLetras(letras));
+recorrerLetras(letras)
